@@ -31,6 +31,7 @@ ul{list-style:none}
 :focus-visible{outline:3px solid var(--azul-confianca);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion: reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .bokashi-card.reveal,.dor-card.reveal,.pf-col.reveal,.custo-block.reveal{opacity:1!important;transform:none!important}
 }
 
 /* BOTÕES */
@@ -243,6 +244,63 @@ footer .links a:hover{color:var(--limao)}
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
 .js .reveal.visible{opacity:1;transform:none}
 
+/* O QUE É BOKASHI */
+.bokashi-sec{background:linear-gradient(160deg,#eaf5e1,#f7f5ef)}
+.bokashi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.bokashi-card{background:#fff;border-radius:var(--raio);padding:28px;border:1px solid #e8f5e9;box-shadow:var(--sombra);transition:transform .25s,box-shadow .25s}
+.bokashi-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-hover)}
+.bokashi-card .ico{font-size:2.2rem;margin-bottom:12px}
+.bokashi-card h3{font-size:1.1rem;margin-bottom:8px;color:var(--verde-escuro)}
+.bokashi-card p{color:var(--marrom-claro);font-size:.95rem}
+
+/* DOR / PERGUNTAS */
+.dor-sec{background:#fff}
+.dor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.dor-card{background:var(--creme);border-radius:var(--raio);padding:22px 24px;display:flex;align-items:flex-start;gap:14px;border:1px solid #eee;transition:transform .25s,box-shadow .25s}
+.dor-card:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
+.dor-card .dor-ico{font-size:1.5rem;flex:0 0 auto;margin-top:2px}
+.dor-card p{color:var(--marrom);font-size:.98rem;font-weight:500;line-height:1.5}
+.dor-transition{text-align:center;margin-top:36px;font-size:1.08rem;color:var(--verde-escuro);font-weight:600;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* CÁLCULO DE CUSTO */
+.custo-sec{background:var(--creme);padding:60px 0}
+.custo-block{background:#fff;border-radius:var(--raio);padding:40px 36px;border-left:6px solid var(--verde);box-shadow:var(--sombra);max-width:780px;margin:0 auto}
+.custo-block h2{font-size:1.8rem;color:var(--preto);margin-bottom:28px;text-align:center}
+.custo-lines{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.custo-line{display:flex;align-items:center;gap:14px;font-size:1.02rem;color:var(--marrom);padding:14px 18px;border-radius:12px}
+.custo-perda{background:#fdecea}
+.custo-perda b{color:var(--urgencia);font-family:'Poppins'}
+.custo-total{background:#e8f5e9;font-weight:700}
+.custo-total b{color:var(--verde-escuro);font-family:'Poppins';font-size:1.1rem}
+.custo-ico{font-size:1.4rem;flex:0 0 auto}
+.custo-fechamento{text-align:center;font-size:1.05rem;color:var(--verde-escuro);font-weight:600;padding-top:8px;border-top:1px solid #eee}
+.custo-fechamento b{color:var(--verde)}
+
+/* PARA QUEM É */
+.pf-sec{background:#fff}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.pf-col{border-radius:var(--raio);padding:32px 28px}
+.pf-yes{background:#e8f5e9;border:2px solid var(--verde-claro)}
+.pf-no{background:#fdecea;border:2px solid #ef9a9a}
+.pf-col h3{font-size:1.15rem;margin-bottom:18px}
+.pf-yes h3{color:var(--verde-escuro)}
+.pf-no h3{color:var(--urgencia)}
+.pf-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.pf-col li{font-size:.98rem;color:var(--marrom);line-height:1.5;padding-left:0}
+.pf-fechamento{text-align:center;margin-top:30px;font-size:1.05rem;color:var(--verde-escuro);font-weight:600}
+
+/* CSS-only reveal for new sections */
+.bokashi-card.reveal,.dor-card.reveal,.pf-col.reveal{animation:cardRevealUp .6s ease forwards}
+.bokashi-card.reveal:nth-child(1),.dor-card.reveal:nth-child(1){animation-delay:.05s}
+.bokashi-card.reveal:nth-child(2),.dor-card.reveal:nth-child(2){animation-delay:.12s}
+.bokashi-card.reveal:nth-child(3),.dor-card.reveal:nth-child(3){animation-delay:.19s}
+.bokashi-card.reveal:nth-child(4),.dor-card.reveal:nth-child(4){animation-delay:.26s}
+.bokashi-card.reveal:nth-child(5),.dor-card.reveal:nth-child(5){animation-delay:.33s}
+.bokashi-card.reveal:nth-child(6),.dor-card.reveal:nth-child(6){animation-delay:.40s}
+.pf-col.reveal:nth-child(1){animation-delay:.05s}
+.pf-col.reveal:nth-child(2){animation-delay:.15s}
+@keyframes cardRevealUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
 /* RESPONSIVO */
 @media(max-width:900px){
   .hero-grid,.prod-grid{grid-template-columns:1fr}
@@ -250,7 +308,8 @@ footer .links a:hover{color:var(--limao)}
   .hero{padding:130px 0 60px}
   .hero h1{font-size:2.3rem}
   .trust-grid{grid-template-columns:repeat(2,1fr);gap:18px}
-  .prob-grid,.benef-grid,.depo-grid,.specs-grid{grid-template-columns:1fr}
+  .prob-grid,.benef-grid,.depo-grid,.specs-grid,.bokashi-grid,.dor-grid,.pf-grid{grid-template-columns:1fr}
+  .custo-block{padding:28px 20px}
   .steps{grid-template-columns:repeat(2,1fr)}
   .nav-links,.nav-cta .btn-dark{display:none}
   .mobile-menu{display:block}
@@ -261,6 +320,8 @@ footer .links a:hover{color:var(--limao)}
 @media(max-width:480px){
   .trust-grid{grid-template-columns:1fr}
   .usos-grid{grid-template-columns:1fr}
+  .custo-line{flex-direction:column;align-items:flex-start;gap:6px}
+  .custo-block{padding:24px 18px}
   .steps{grid-template-columns:1fr}
   .hero h1{font-size:2rem}
   .oferta{padding:24px}
