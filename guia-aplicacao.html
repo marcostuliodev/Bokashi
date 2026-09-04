@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Aplicação — Bokashi Prospere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-escuro: #1b5e20;
+      --verde: #2e7d32;
+      --verde-claro: #66bb6a;
+      --limao: #a4e036;
+      --marrom: #5d4037;
+      --marrom-claro: #6d4c41;
+      --creme: #f7f5ef;
+      --branco: #ffffff;
+      --preto: #1a1a1a;
+      --urgencia: #c62828;
+      --dourado: #c8a951;
+      --dourado-claro: #f5e6b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--preto);
+      background: var(--branco);
+      line-height: 1.6;
+    }
+
+    /* ====== PAGE STRUCTURE ====== */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      background: var(--branco);
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    /* ====== COVER PAGE ====== */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(160deg, #0d3b0f 0%, #1b5e20 40%, #2e7d32 100%);
+      color: var(--branco);
+      padding: 60px 50px;
+      position: relative;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(164,224,54,.15), transparent 70%);
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(164,224,54,.1), transparent 70%);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px;
+      padding: 8px 24px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      backdrop-filter: blur(4px);
+    }
+
+    .cover-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    .cover-logo span {
+      color: var(--limao);
+    }
+
+    .cover-subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      opacity: .8;
+      margin-bottom: 50px;
+      letter-spacing: .5px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      max-width: 500px;
+    }
+
+    .cover-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: .75;
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 50px;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: .75rem;
+      opacity: .5;
+      letter-spacing: 1px;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--limao);
+      border-radius: 2px;
+      margin: 0 auto 30px;
+    }
+
+    /* ====== CONTENT PAGES ====== */
+    .content-page {
+      padding: 50px 55px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--verde);
+      margin-bottom: 12px;
+      padding: 4px 12px;
+      background: rgba(46,125,50,.08);
+      border-radius: 4px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .section-text {
+      font-size: .92rem;
+      color: var(--marrom);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 560px;
+    }
+
+    /* ====== CARDS ====== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card-grid-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .card {
+      background: var(--creme);
+      border-radius: 14px;
+      padding: 22px 20px;
+      border: 1px solid rgba(0,0,0,.04);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: .82rem;
+      color: var(--marrom-claro);
+      line-height: 1.6;
+    }
+
+    /* ====== STEPS ====== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--creme);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .step-num {
+      flex: 0 0 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--verde-escuro);
+      color: var(--branco);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: .8rem;
+      color: var(--marrom-claro);
+      line-height: 1.55;
+    }
+
+    /* ====== DOSAGE TABLE ====== */
+    .dosage-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: .82rem;
+    }
+
+    .dosage-table thead th {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: .5px;
+    }
+
+    .dosage-table thead th:first-child {
+      border-radius: 10px 0 0 0;
+    }
+
+    .dosage-table thead th:last-child {
+      border-radius: 0 10px 0 0;
+    }
+
+    .dosage-table tbody td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #eee;
+      color: var(--marrom);
+    }
+
+    .dosage-table tbody tr:nth-child(even) {
+      background: rgba(247,245,239,.5);
+    }
+
+    .dosage-table tbody tr:last-child td:first-child {
+      border-radius: 0 0 0 10px;
+    }
+
+    .dosage-table tbody tr:last-child td:last-child {
+      border-radius: 0 0 10px 0;
+    }
+
+    .dosage-table .highlight {
+      font-weight: 700;
+      color: var(--verde-escuro);
+    }
+
+    /* ====== BEFORE / AFTER ====== */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .ba-col {
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+
+    .ba-antes {
+      background: #fdecea;
+      border: 1.5px solid #ef9a9a;
+    }
+
+    .ba-depois {
+      background: #e8f5e9;
+      border: 1.5px solid var(--verde-claro);
+    }
+
+    .ba-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .ba-antes h3 { color: var(--urgencia); }
+    .ba-depois h3 { color: var(--verde-escuro); }
+
+    .ba-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ba-col li {
+      font-size: .8rem;
+      color: var(--marrom);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .ba-antes li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: var(--urgencia);
+      font-weight: 700;
+      font-size: .75rem;
+    }
+
+    .ba-depois li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--verde-escuro);
+      font-weight: 700;
+      font-size: .75rem;
+    }
+
+    /* ====== TIPS BOX ====== */
+    .tips-box {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      border-left: 4px solid var(--verde);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .tips-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 10px;
+    }
+
+    .tips-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tips-box li {
+      font-size: .82rem;
+      color: var(--marrom);
+      line-height: 1.55;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .tips-box li::before {
+      content: "💡";
+      position: absolute;
+      left: 0;
+      font-size: .7rem;
+    }
+
+    /* ====== FAQ ====== */
+    .faq-item {
+      background: var(--creme);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+    }
+
+    .faq-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      font-size: .8rem;
+      color: var(--marrom-claro);
+      line-height: 1.6;
+    }
+
+    /* ====== FOOTER ====== */
+    .page-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 55px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .7rem;
+      color: var(--marrom-claro);
+      border-top: 1px solid #eee;
+    }
+
+    .page-footer .brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--verde-escuro);
+    }
+
+    /* ====== DIVIDER ====== */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ddd, transparent);
+      margin: 28px 0;
+    }
+
+    /* ====== QUOTE ====== */
+    .quote-box {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      border-radius: 14px;
+      padding: 24px 28px;
+      text-align: center;
+      margin: 24px 0;
+    }
+
+    .quote-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.6;
+      opacity: .95;
+    }
+
+    .quote-box .author {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-style: normal;
+      opacity: .6;
+      margin-top: 10px;
+    }
+
+    /* ====== PRINT ====== */
+    @media print {
+      body { margin: 0; background: white; }
+      .page {
+        width: 100%;
+        min-height: auto;
+        margin: 0;
+        page-break-after: always;
+        box-shadow: none;
+      }
+      .page:last-child { page-break-after: auto; }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PÁGINA 1: CAPA ==================== -->
+  <div class="page cover">
+    <div class="cover-badge">Especial Orquídeas</div>
+    <div class="cover-logo">Bokashi <span>Prospere</span></div>
+    <div class="cover-subtitle">Adubo Orgânico Fermentado</div>
+    <div class="cover-divider"></div>
+    <h1 class="cover-title">Guia Completo de Aplicação</h1>
+    <p class="cover-desc">Tudo o que você precisa saber para usar o Bokashi Prospere e transformar a saúde das suas plantas — do solo à floração.</p>
+    <div class="cover-footer">bokashiprospere.com.br · Especial Orquídeas · 2026</div>
+  </div>
+
+  <!-- ==================== PÁGINA 2: O QUE É BOKASHI ==================== -->
+  <div class="page content-page">
+    <span class="section-label">Entenda o produto</span>
+    <h2 class="section-title">O que é Bokashi?</h2>
+    <p class="section-text">
+      Bokashi é uma palavra japonesa que significa "fermentação orgânica". Diferente dos adubos comuns que degradam a matéria orgânica, o Bokashi a <b>fermenta</b> com microrganismos benéficos — preservando os nutrientes e criando um solo vivo, fértil e cheio de vida.
+    </p>
+    <p class="section-text">
+      O Bokashi Prospere contém microrganismos como <b>Lactobacillus</b> e <b>Saccharomyces</b> — os mesmos usados na fermentação de alimentos — que reativam a biologia do solo e criam um ecossistema que sustenta suas plantas de forma natural.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🧫</div>
+        <h3>Fermentação, não decomposição</h3>
+        <p>Enquanto adubos comuns degradam a matéria orgânica e perdem nutrientes, o Bokashi fermenta — preservando tudo que a planta precisa.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🦠</div>
+        <h3>Microrganismos vivos</h3>
+        <p>Contém bactérias ácido-láticas e leveduras que reativam a vida do solo, criando um ambiente ideal para o crescimento das raízes.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌱</div>
+        <h3>Solo vivo vs solo morto</h3>
+        <p>Adubos químicos matam a biologia do solo. O Bokashi restaura a fertilidade natural, criando um ecossistema que sustenta a planta.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💪</div>
+        <h3>Por que funciona</h3>
+        <p>Enquanto outros adubos apenas alimentam a planta, o Bokashi cura a terra — e planta saudável nasce de solo saudável.</p>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <p>"Solo vivo é a base de toda planta saudável. O Bokashi não alimenta a planta — ele revive o solo."</p>
+      <div class="author">— Especial Orquídeas</div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand">Bokashi Prospere</span>
+      <span>Guia de Aplicação · Página 2</span>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 3: BENEFÍCIOS ==================== -->
+  <div class="page content-page">
+    <span class="section-label">Benefícios</span>
+    <h2 class="section-title">O que o Bokashi Prospere faz pela sua planta</h2>
+    <p class="section-text">
+      Uma fórmula equilibrada e fermentada que estimula a vida do solo e melhora a absorção de nutrientes de forma natural e segura.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🌱</div>
+        <h3>100% natural e orgânico</h3>
+        <p>Adubo fermentado, livre de químicos, seguro para sua família, pets e o meio ambiente.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🪴</div>
+        <h3>Solo vivo e fértil</h3>
+        <p>Melhora a fertilidade e a vida do solo, reativando a biologia que sustenta as plantas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💪</div>
+        <h3>Raízes fortes e saudáveis</h3>
+        <p>Estimula raízes mais resistentes, base para um crescimento equilibrado e vigoroso.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Brotação acelerada</h3>
+        <p>Acelera o surgimento de novas gemas e brotos, deixando a planta mais cheia e viva.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌸</div>
+        <h3>Florações abundantes</h3>
+        <p>Flores mais intensas, numerosas e duradouras durante todo o ano.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏳</div>
+        <h3>Liberação gradual</h3>
+        <p>Nutrientes liberados aos poucos, sem queimar raízes e com efeito prolongado por meses.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <span class="section-label">Antes vs Depois</span>
+    <h2 class="section-title" style="font-size:1.4rem;">Veja o que acontece com e sem Bokashi</h2>
+
+    <div class="ba-grid">
+      <div class="ba-col ba-antes">
+        <h3>❌ Sem Bokashi</h3>
+        <ul>
+          <li>Solo duro que não deixa as raízes crescerem</li>
+          <li>Plantas que dependem cada vez mais de adubo químico</li>
+          <li>Poucas flores, sem energia e sem brilho</li>
+          <li>Folhas amareladas e raízes que apodrecem</li>
+          <li>Pragas e doenças que atacam com facilidade</li>
+          <li>Solo que não segura água — precisa regar todo dia</li>
+          <li>Dinheiro gasto com produtos que não resolvem</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-depois">
+        <h3>✅ Com Bokashi</h3>
+        <ul>
+          <li>Solo macio, arejado e cheio de vida</li>
+          <li>Raízes fortes que absorvem tudo que a planta precisa</li>
+          <li>Mais flores, mais bonitas e que duram semanas</li>
+          <li>Plantas fortes que resistem a pragas e doenças</li>
+          <li>Nutrição que vem devagar, sem queimar nada</li>
+          <li>Solo que segura a água e precisa de menos rega</li>
+          <li>Um só produto que resolve o problema de vez</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand">Bokashi Prospere</span>
+      <span>Guia de Aplicação · Página 3</span>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 4: COMO FUNCIONA + DOSAGEM ==================== -->
+  <div class="page content-page">
+    <span class="section-label">Passo a passo</span>
+    <h2 class="section-title">Como aplicar o Bokashi Prospere</h2>
+    <p class="section-text">
+      O processo é simples e rápido. Em 4 passos, você ativa a vida do solo e começa a ver resultados.
+    </p>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Prepare a planta</h3>
+          <p>Remova folhas secas e verifique o estado do substrato. Se estiver muito compactado, fure levemente com um palito.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Aplique o Bokashi</h3>
+          <p>Espalhe a quantidade indicada sobre o substrato ou misture levemente na terra. Em vasos, distribua uniformemente ao redor da planta.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Regue normalmente</h3>
+          <p>A água ativa os microrganismos e começa o processo de fermentação no solo. Regue conforme a necessidade da planta.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Acompanhe os resultados</h3>
+          <p>Em 2-3 semanas, observe as melhorias no solo. Em 4-8 semanas, veja brotações e florações mais intensas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <span class="section-label">Dosagem</span>
+    <h2 class="section-title" style="font-size:1.4rem;">Tabela de aplicação por tipo de planta</h2>
+    <p class="section-text" style="margin-bottom:16px;">
+      A dosagem varia conforme o tamanho do vaso e o tipo de planta. Use esta tabela como referência.
+    </p>
+
+    <table class="dosage-table">
+      <thead>
+        <tr>
+          <th>Tipo de Planta</th>
+          <th>Tamanho do Vaso</th>
+          <th>Quantidade por Aplicação</th>
+          <th>Frequência</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="highlight">🌸 Orquídeas</td>
+          <td>Pequeno (até 15cm)</td>
+          <td>1 colher de chá (5g)</td>
+          <td>A cada 30 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🌸 Orquídeas</td>
+          <td>Médio (15-25cm)</td>
+          <td>1 colher de sobremesa (10g)</td>
+          <td>A cada 30 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🌸 Orquídeas</td>
+          <td>Grande (acima de 25cm)</td>
+          <td>2 colheres de sobremesa (20g)</td>
+          <td>A cada 30 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🌿 Plantas verdes</td>
+          <td>Pequeno (até 15cm)</td>
+          <td>1 colher de chá (5g)</td>
+          <td>A cada 45 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🌿 Plantas verdes</td>
+          <td>Médio (15-25cm)</td>
+          <td>1 colher de sobremesa (10g)</td>
+          <td>A cada 45 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🍊 Frutíferas</td>
+          <td>Árvore/jardim</td>
+          <td>200g por m² de terra</td>
+          <td>A cada 60 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🥬 Hortaliças</td>
+          <td>Canteiro/altura</td>
+          <td>100g por m² de terra</td>
+          <td>A cada 30 dias</td>
+        </tr>
+        <tr>
+          <td class="highlight">🫐 Mirtilo</td>
+          <td>Vaso/jardim</td>
+          <td>150g por m² de terra</td>
+          <td>A cada 45 dias</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tips-box">
+      <h3>Dicas importantes</h3>
+      <ul>
+        <li>Não aplicar diretamente nas raízes — espalhe sobre o substrato</li>
+        <li>Evite aplicar em dias de sol forte — prefira manhãs ou tardes</li>
+        <li>O Bokashi pode ser usado junto com rega normal — não precisa de procedure especial</li>
+        <li>Armazene o pote fechado, em local fresco e seco</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand">Bokashi Prospere</span>
+      <span>Guia de Aplicação · Página 4</span>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 5: PARA QUEM É + CUSTO + FAQ ==================== -->
+  <div class="page content-page">
+    <span class="section-label">Para quem é</span>
+    <h2 class="section-title">Este produto é para você se...</h2>
+
+    <div class="ba-grid">
+      <div class="ba-col ba-depois">
+        <h3>✅ Este produto é para você</h3>
+        <ul>
+          <li>Você tem orquídeas, frutíferas ou hortaliças</li>
+          <li>Quer um adubo natural e seguro para família e pets</li>
+          <li>Já tentou outros adubos sem resultado</li>
+          <li>Quer solo vivo e fértil, não só planta alimentada</li>
+          <li>Entende que resultados naturais levam tempo</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-antes">
+        <h3>❌ Não é para você se</h3>
+        <ul>
+          <li>Procura fertilizante químico de ação rápida</li>
+          <li>Não tem plantas ou não cuida delas</li>
+          <li>Quer resultado instantâneo sem paciência</li>
+          <li>Não acredita em métodos naturais</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <span class="section-label">Quanto você já perdeu?</span>
+    <h2 class="section-title" style="font-size:1.4rem;">O custo de continuar sem Bokashi</h2>
+
+    <div class="card-grid card-grid-3">
+      <div class="card" style="text-align:center; border-left:3px solid var(--urgencia);">
+        <div class="card-icon">🥀</div>
+        <h3 style="color:var(--urgencia); font-size:1.2rem;">R$ 90–240</h3>
+        <p>Orquídeas perdidas por ano</p>
+      </div>
+      <div class="card" style="text-align:center; border-left:3px solid var(--urgencia);">
+        <div class="card-icon">🧪</div>
+        <h3 style="color:var(--urgencia); font-size:1.2rem;">R$ 60–120</h3>
+        <p>Adubos que não funcionam</p>
+      </div>
+      <div class="card" style="text-align:center; border-left:3px solid var(--urgencia);">
+        <div class="card-icon">💊</div>
+        <h3 style="color:var(--urgencia); font-size:1.2rem;">R$ 40–80</h3>
+        <p>Remédios e tratamentos</p>
+      </div>
+    </div>
+
+    <div class="quote-box" style="background:var(--verde);">
+      <p>Total desperdiçado por ano: <b>R$ 190–440</b><br>O Bokashi Prospere custa <b>R$ 49,90</b> e dura <b>4+ meses</b>.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <span class="section-label">Perguntas frequentes</span>
+    <h2 class="section-title" style="font-size:1.4rem;">Dúvidas comuns</h2>
+
+    <div class="faq-item">
+      <h4>Quanto tempo para ver resultados?</h4>
+      <p>Os primeiros sinais de melhoria no solo aparecem em 2-3 semanas. Resultados mais visíveis em brotação e floração geralmente surgem entre 4-8 semanas.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Posso usar em plantas delicadas?</h4>
+      <p>Sim! Por ser 100% natural e liberar nutrientes gradualmente, o Bokashi é seguro até para mudas e plantas jovens.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Tem cheiro? É seguro para pets?</h4>
+      <p>O Bokashi tem um leve cheiro de terra molhada. É 100% orgânico e seguro para contato com pets e crianças.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Quanto rende 1 pote?</h4>
+      <p>1 pote de 1kg rende mais de 40 aplicações em vasos. Custo por aplicação: menos de R$ 1,25.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Posso usar junto com outros adubos?</h4>
+      <p>Sim, mas não é necessário. Se quiser usar junto, espere pelo menos 1 semana entre aplicações.</p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand">Bokashi Prospere</span>
+      <span>Guia de Aplicação · Página 5</span>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 6: DEPOIMENTOS + ENCERRAMENTO ==================== -->
+  <div class="page content-page">
+    <span class="section-label">Quem usa, vê prosperar</span>
+    <h2 class="section-title">Histórias reais de transformação</h2>
+    <p class="section-text">
+      Mais de 12.000 plantas já prosperaram com o Bokashi Prospere. Veja o que dizem nossos clientes.
+    </p>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div style="color:#fbc02d; font-size:.9rem; margin-bottom:8px;">★★★★★</div>
+      <p style="font-style:italic; font-size:.88rem; color:var(--marrom); margin-bottom:12px;">
+        "Minhas orquídeas tinham raízes secas e não floreciam há meses. Tentei dois adubos químicos diferentes e só piorou. Comecei a usar o Bokashi Prospere e em 3 semanas as raízes começaram a despertar. Em 2 meses, novas hastes surgiram. As flores estão mais grossas e duram semanas a mais!"
+      </p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--verde-claro),var(--verde-escuro));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;">AM</div>
+        <div>
+          <div style="font-weight:700;font-size:.82rem;">Ana Maria <span style="color:#1e88e5;font-size:.7rem;">✔</span></div>
+          <div style="font-size:.72rem;color:var(--marrom-claro);">São Paulo, SP</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div style="color:#fbc02d; font-size:.9rem; margin-bottom:8px;">★★★★★</div>
+      <p style="font-style:italic; font-size:.88rem; color:var(--marrom); margin-bottom:12px;">
+        "Minha horta e meu jardim estavam com o solo 'cansado' — nada brotava direito. Um amigo me indicou o Bokashi. Misturei ao substrato e em poucas semanas o solo ficou mais leve e vivo. As mudas brotam mais rápido e nunca mais precisei de adubo químico. Recomendo demais!"
+      </p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--verde-claro),var(--verde-escuro));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;">JR</div>
+        <div>
+          <div style="font-weight:700;font-size:.82rem;">João Ribeiro <span style="color:#1e88e5;font-size:.7rem;">✔</span></div>
+          <div style="font-size:.72rem;color:var(--marrom-claro);">Belo Horizonte, MG</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div style="color:#fbc02d; font-size:.9rem; margin-bottom:8px;">★★★★★</div>
+      <p style="font-style:italic; font-size:.88rem; color:var(--marrom); margin-bottom:12px;">
+        "Eu molhava minhas orquídeas sem método e o substrato sempre ficava com cheiro de mofo. Li sobre o Bokashi e resolvi testar. A textura da terra mudou completamente — ficou arejada e sem mau cheiro. Meus mirtilos responderam super bem e as plantas estão mais vigorosas. Amei o resultado!"
+      </p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--verde-claro),var(--verde-escuro));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;">CS</div>
+        <div>
+          <div style="font-weight:700;font-size:.82rem;">Carla Souza <span style="color:#1e88e5;font-size:.7rem;">✔</span></div>
+          <div style="font-size:.72rem;color:var(--marrom-claro);">Curitiba, PR</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:.82rem; color:var(--marrom); margin-bottom:24px;">
+      ⭐ Avaliação média <b>4,8/5</b> baseada em <b>3.214</b> avaliações reais de clientes verificados.
+    </p>
+
+    <div class="divider"></div>
+
+    <div style="text-align:center; padding:20px 0;">
+      <p style="font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--verde-escuro); margin-bottom:12px;">
+        Pronto para transformar suas plantas?
+      </p>
+      <p style="font-size:.88rem; color:var(--marrom); margin-bottom:20px; max-width:400px; margin-left:auto; margin-right:auto;">
+        Acesse <b>bokashiprospere.com.br</b> e garanta seu Bokashi Prospere com frete grátis e garantia de 7 dias.
+      </p>
+      <div style="display:inline-block; background:var(--verde-escuro); color:#fff; padding:12px 32px; border-radius:50px; font-weight:700; font-size:.88rem;">
+        🛒 Garantir meu Bokashi — R$ 49,90
+      </div>
+      <p style="font-size:.72rem; color:var(--marrom-claro); margin-top:12px;">
+        Pagamento via Pix ou cartão · Garantia de 7 dias · Frete grátis
+      </p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand">Bokashi Prospere</span>
+      <span>Guia de Aplicação · Página 6</span>
+    </div>
+  </div>
+
+</body>
+</html>
