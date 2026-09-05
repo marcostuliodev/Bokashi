@@ -1109,11 +1109,12 @@ header.scrolled {
   color: var(--c-marrom);
   background: var(--c-creme);
   border-radius: var(--r-sm);
-  & b:nth-child(1) {
-    color: var(--c-verde-escuro);
-    font-family: var(--ff-heading);
-    text-align: center;
-  }
+}
+
+.oferta .bonus div b:first-child {
+  color: var(--c-verde-escuro);
+  font-family: var(--ff-heading);
+  text-align: center;
 }
 
 /* Garantia inline */
@@ -1781,11 +1782,11 @@ header.scrolled {
   padding: 0 var(--sp-6) var(--sp-5);
   color: var(--c-marrom-claro);
   font-size: 0.96rem;
+}
 
-  & a{
-    color: var(--c-verde-escuro);
-    text-decoration: underline;
-  }
+.faq-item p a {
+  color: var(--c-verde-escuro);
+  text-decoration: underline;
 }
 
 
@@ -2220,7 +2221,7 @@ footer .links a:hover {
   }
 
   .custo-nao-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .valor-comparacao {
@@ -2261,8 +2262,123 @@ footer .links a:hover {
 
 /* Mobile */
 @media (max-width: 480px) {
+  section {
+    padding: var(--sp-10) 0;
+  }
+
+  .container {
+    padding: 0 var(--sp-3);
+  }
+
+  .topbar {
+    font-size: var(--fs-xs);
+    padding: var(--sp-1) var(--sp-2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hero {
+    padding: 100px 0 var(--sp-8);
+  }
+
+  .hero::after {
+    width: 280px;
+    height: 280px;
+    right: -80px;
+    top: -40px;
+  }
+
+  .hero-img img {
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .hero-img .f1 {
+    top: 8px;
+    left: 8px;
+    font-size: var(--fs-xs);
+    padding: var(--sp-2) var(--sp-3);
+  }
+
+  .hero-img .f2 {
+    bottom: 16px;
+    right: 8px;
+    font-size: var(--fs-xs);
+    padding: var(--sp-2) var(--sp-3);
+  }
+
   .hero h1 {
     font-size: 2rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-trust {
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .sec-head h2 {
+    font-size: 1.5rem;
+  }
+
+  .sec-head p {
+    font-size: var(--fs-sm);
+  }
+
+  .oferta h2,
+  .oferta h3 {
+    font-size: 1.35rem;
+  }
+
+  .preco {
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+
+  .prod-img .galeria {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-2);
+  }
+
+  .faq-item summary {
+    padding: var(--sp-4) var(--sp-4);
+    font-size: 0.95rem;
+  }
+
+  .faq-item p {
+    padding: 0 var(--sp-4) var(--sp-4);
+  }
+
+  .mid-cta-box .btn {
+    width: 100%;
+  }
+
+  .cta-final {
+    padding: 60px 0;
+  }
+
+  .cta-final h2 {
+    font-size: 1.6rem;
+  }
+
+  .modal {
+    padding: var(--sp-6) var(--sp-5);
+    margin: var(--sp-3);
+    max-width: calc(100vw - 24px);
+  }
+
+  .modal h3 {
+    font-size: 1.15rem;
   }
 
   .trust-grid,
