@@ -823,6 +823,31 @@ header.scrolled {
   background: var(--bg-verde-sutil);
 }
 
+.depo-video-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--sp-7);
+}
+
+.depo-video {
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
+  height: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  background: #000;
+  display: block;
+}
+
+.depo-video-cap {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm, 0.9rem);
+  color: var(--c-marrom);
+  font-weight: 600;
+  text-align: center;
+}
+
 .depo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

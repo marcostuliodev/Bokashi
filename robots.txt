@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Bloqueia apenas páginas administrativas/inúteis para buscadores
+Disallow: /*?order=
+Disallow: /*?sort_by=
+Disallow: /*?filter_
+Disallow: /*?page=
+
+Sitemap: https://bokashi.especialorquideas.com.br/sitemap.xml

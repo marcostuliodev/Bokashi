@@ -7,8 +7,9 @@ const CONFIG = {
   // >>> SUBSTITUA pelo número real da loja (código do país + DDD + número, só dígitos) <<<
   whatsapp: "5531992454244",
 
-  // >>> PÁGINA DE DESTINO (loja / checkout) — onde a venda acontece <<<
-  productUrl: "https://especialorquideas.com.br/products/adubo-organico-bokashi-poderoso-para-floracao-raiz-e-crescimento",
+  // >>> DESTINO DA COMPRA: link direto do carrinho Shopify (302 → checkout) <<<
+  // Um clique já leva o produto ao checkout — sem página de produto, sem carrinho manual.
+  productUrl: "https://especialorquideas.com.br/cart/47688320713010:1",
 
   // Mensagens pré-definidas do WhatsApp (canal de suporte)
   msg: {
@@ -159,7 +160,9 @@ async function sha256(str) {
 }
 
 function initLeadModal() {
-  const modal = document.getElementById('leadModal');
+  /* Modal de lead desativado: a compra agora é direta ao checkout
+     (CONFIG.productUrl), sem interromper o visitante com captura de e-mail. */
+  return;
   const form = document.getElementById('leadForm');
   const email = document.getElementById('leadEmail');
   const consent = document.getElementById('leadConsent');
