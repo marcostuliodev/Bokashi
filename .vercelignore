@@ -1,0 +1,5 @@
+# Arquivos internos que NÃO devem ser publicados na Vercel
+RELATORIO-ANALISE-CONVERSAO.md
+WhatsApp Image*.jpeg
+.git
+.gitignore

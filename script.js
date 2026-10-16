@@ -70,7 +70,14 @@ function toggleMenu() {
   if (open) { nav.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
   else { nav.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false'); }
 }
-window.toggleMenu = toggleMenu;
+
+/* Vincula o menu via addEventListener (substitui os antigos onclick inline,
+   removidos para permitir CSP script-src 'self' sem 'unsafe-inline'). */
+function initMobileMenu() {
+  const btn = document.querySelector('.mobile-menu');
+  if (btn) btn.addEventListener('click', toggleMenu);
+  document.querySelectorAll('#mobileNav a').forEach((a) => a.addEventListener('click', toggleMenu));
+}
 
 /* ----------------------- Countdown (oferta do dia) --------------------- */
 function initCountdown() {
@@ -249,6 +256,7 @@ function initAnalytics() {
 document.addEventListener('DOMContentLoaded', () => {
   setLinks();
   initHeader();
+  initMobileMenu();
   initCountdown();
   initStock();
   initStickyCta();
