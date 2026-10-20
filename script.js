@@ -13,7 +13,7 @@ const CONFIG = {
 
   // Mensagens pré-definidas do WhatsApp (canal de suporte)
   msg: {
-    compra: "Olá! Tenho dúvidas sobre o Bokashi Prospere (R$ 49,90 no Pix com frete grátis).",
+    compra: "Olá! Tenho dúvidas sobre o Bokashi Prospere (R$ 49,90 no Pix).",
     desconto: "Olá! Vi a oferta do site e quero o Bokashi Prospere com 10% OFF no Pix."
   },
 
