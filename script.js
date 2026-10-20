@@ -224,7 +224,7 @@ function initCtaTracking() {
 
 /* ----------------------- Reveal on scroll ------------------------------ */
 function initReveal() {
-  const targets = document.querySelectorAll('.benef, .prob-card, .step, .depo-card, .uso, .spec, .bokashi-card, .dor-card, .pf-col, .dt-card, .ad-col, .custo-nao-item');
+  const targets = document.querySelectorAll('.benef, .prob-card, .step, .depo-card, .uso, .spec, .bokashi-card, .dor-card, .pf-col, .dt-card, .ad-col, .custo-block, .custo-nao-item');
   if (!('IntersectionObserver' in window) || !targets.length) return;
   targets.forEach((t) => t.classList.add('reveal'));
   const io = new IntersectionObserver((entries) => {
